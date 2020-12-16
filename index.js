@@ -57,9 +57,9 @@ const getIssueTagFromBranchName = (branchName) => {
     return matched && matched[index]
 }
 
-const jiraTag = process.argv[2]
+const jiraTag = process.argv[3]
 const tagMatcher = process.env.TAG_MATCHER ? new RegExp(process.env.TAG_MATCHER, "i") : new RegExp(`^${jiraTag}-\\d+`, "i")
-const commitMsgFile = process.env.GIT_PARAMS || process.env.HUSKY_GIT_PARAMS
+const commitMsgFile = process.argv[2]
 const commitMsg = fs.readFileSync(commitMsgFile, { encoding: "utf-8" })
 const branchName = getBranchName()
 const issueTag = getIssueTagFromBranchName(branchName)
